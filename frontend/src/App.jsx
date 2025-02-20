@@ -1,14 +1,12 @@
-
-import './App.css'
+import "./App.css";
+import HomePage from "./landing_page/home/HomePage";
 
 function App() {
-
-
   return (
     <div>
-      <h2>Xerodha colone</h2>
+      <HomePage />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
