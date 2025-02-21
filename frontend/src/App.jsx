@@ -1,10 +1,10 @@
 import "./App.css";
-import HomePage from "./landing_page/home/HomePage";
+import UserRoutes from "./UserRoutes";
 
 function App() {
   return (
     <div>
-      <HomePage />
+      <UserRoutes />
     </div>
   );
 }

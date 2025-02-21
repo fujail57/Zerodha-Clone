@@ -10,10 +10,10 @@ const Footer = () => {
           <p>© 2010 - 2025, Zerodha Broking Ltd.</p>
           <p>All rights reserved.</p>
           <div className="row">
-            <div className="col-3"><a href="#"><i class="fa-brands fa-x-twitter"></i></a></div>
-            <div className="col-3"><a href="#"><i class="fa-brands fa-square-facebook"></i></a></div>
-            <div className="col-3"><a href="#"><i class="fa-brands fa-instagram"></i></a></div>
-            <div className="col-3"><a href="#"><i class="fa-brands fa-linkedin"></i></a></div>
+            <div className="col-3"><a href="#"><i className="fa-brands fa-x-twitter"></i></a></div>
+            <div className="col-3"><a href="#"><i className="fa-brands fa-square-facebook"></i></a></div>
+            <div className="col-3"><a href="#"><i className="fa-brands fa-instagram"></i></a></div>
+            <div className="col-3"><a href="#"><i className="fa-brands fa-linkedin"></i></a></div>
           </div>
         </div>
         <div className="row col-3">
