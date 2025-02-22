@@ -9,10 +9,10 @@ const AboutPage = () => {
   return (
     <div>
       <NavBar />
-      <h2>About Page</h2>
-      <SemplePage name="This is About Page" />
-      {/* <Hero /> */}
-      {/* <Team /> */}
+      {/* <h2>About Page</h2> */}
+      {/* <SemplePage name="This is About Page" /> */}
+      <Hero />
+      <Team />
       <Footer />
     </div>
   );
