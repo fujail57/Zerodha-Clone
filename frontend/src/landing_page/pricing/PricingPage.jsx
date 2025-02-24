@@ -3,16 +3,15 @@ import NavBar from "../NavBar";
 import Hero from "./Hero";
 import Footer from "../Footer";
 import Brokerage from "./Brokerage";
-import SemplePage from "../../component/SemplePage";
+import Charges from "./Charges";
 
 const PricingPage = () => {
   return (
     <div>
       <NavBar />
-      <h2>Pricing Page</h2>
-      <SemplePage name="This is Pricing Page"/>
-      {/* <Hero /> */}
-      {/* <Brokerage /> */}
+      <Hero />
+      <Brokerage />
+      <Charges />
       <Footer />
     </div>
   );

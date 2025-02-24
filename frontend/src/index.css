@@ -84,3 +84,27 @@ h2 {
   color: rgb(37, 37, 37);
   line-height: 1.5em;
 }
+
+.footerLink a {
+  color: rgb(100, 99, 99);
+  font-weight: 600;
+}
+
+.footerLink a:hover {
+  color: #0000ff;
+  font-weight: 600;
+}
+
+
+.charges h3 {
+  font-size: 20px;
+  padding-top: 20px;
+}
+
+.charges p {
+  font-size: small;
+}
+
+.charges h2 {
+  color: rgb(71, 71, 71);
+}
