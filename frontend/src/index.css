@@ -108,3 +108,23 @@ h2 {
 .charges h2 {
   color: rgb(71, 71, 71);
 }
+
+.createTicketLink a {
+  color: #387ed1;
+  font-weight: 400;
+}
+
+/* Support */
+.supportCSS a {
+  color: white;
+  text-decoration: underline;
+}
+
+.supportCSS input {
+  width: 100%;
+  /* height: 40px; */
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: large;
+}

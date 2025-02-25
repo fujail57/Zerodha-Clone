@@ -1,14 +1,15 @@
 import React from "react";
 import NavBar from "../NavBar";
 import Footer from "../Footer";
-import SemplePage from "../../component/SemplePage";
+import CreateTicket from "./CreateTicket";
+import Hero from "./Hero";
 
 const SupportPage = () => {
   return (
     <div>
       <NavBar />
-      <h2>SupportPage</h2>
-      <SemplePage name="This is Support Page" />
+      <Hero />
+      <CreateTicket />
       <Footer />
     </div>
   );

@@ -45,7 +45,7 @@ const Brokerage = () => {
           Commodity
         </h2>
       </div>
-      <div style={{ lineHeight: "1.9em" }} className="">
+      <div style={{ lineHeight: "1.9em" }} >
         {SelectedComponent && <SelectedComponent />}
       </div>
       <div className="text-center p-4">
