@@ -1,5 +1,5 @@
 import React from "react";
-import Manu from "./Manu";
+import Menu from "./Menu";
 
 const TopBar = () => {
   return (
@@ -19,7 +19,7 @@ const TopBar = () => {
       </section>
       {/* right section */}
       <section className="col-8 border-bottom">
-        <Manu />
+        <Menu />
       </section>
     </div>
   );

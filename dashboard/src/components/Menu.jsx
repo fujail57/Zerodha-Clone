@@ -1,18 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
-const Manu = () => {
+const Menu = () => {
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
+  // Click handle functions
+  const handleProfileClick = (index) => {
+    setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  };
+
   return (
     <div className="d-flex justify-content-between align-items-center ">
       {/* logo */}
-      <div>
-        <img
-          style={{ marginTop: "-20px" }}
-          className="mx-3"
-          width={"50px"}
-          src="/images/image.png"
-          alt="Logo"
-        />
-      </div>
+      <div></div>
 
       {/* right side */}
       <div className="">
@@ -35,9 +35,12 @@ const Manu = () => {
           <li>
             <a href="/apps">Apps</a>
           </li>
-
           <li>
-            <div className="d-flex gap-2">
+            <div
+              style={{ cursor: "pointer" }}
+              className="d-flex gap-2"
+              onClick={handleProfileClick}
+            >
               <div className="">ZU</div>
               <p className="">USERID</p>
             </div>
@@ -48,4 +51,4 @@ const Manu = () => {
   );
 };
 
-export default Manu;
+export default Menu;
