@@ -1,12 +1,34 @@
-import React from "react";
-import { holdings } from "../data/data";
+import React, { useEffect, useState } from "react";
+// import { holdings } from "../data/data";
+import axios from "axios";
+
+const holdings_URL = "http://localhost:3002/allholdings";
 
 const Holdings = () => {
+  // fetch holdings data from backend api
+  const [allHoldings, setAllHoldings] = useState([]);
+
+  // const fetchHoldingsData = async () => {
+  //   const responce = await axios.get(holdings_URL);
+  //   setAllHoldings(res.data);
+  // };
+
+  // useEffect(() => {
+  //   fetchHoldingsData();
+  // }, []);
+
+  useEffect(() => {
+    axios.get(holdings_URL).then((res) => {
+      console.log(res.data);
+      setAllHoldings(res.data);
+    });
+  }, []);
+
   return (
     <div className="m-5 ">
       {/* main heading */}
       <section className="my-5">
-        <h2>Holdings ({holdings.length})</h2>
+        <h2>Holdings ({allHoldings.length})</h2>
       </section>
       {/* Holdings list */}
       <section className="table">
@@ -22,7 +44,7 @@ const Holdings = () => {
             <th>Day chg.</th>
           </tr>
 
-          {holdings.map((stock, index) => {
+          {allHoldings.map((stock, index) => {
             const curValue = stock.price * stock.qty;
             const isProfit = curValue - stock.avg * stock.qty >= 0.0;
             const profClass = isProfit ? "profit" : "loss";
