@@ -83,7 +83,6 @@ button:focus-visible {
   color: rgb(50, 50, 250);
 }
 
-
 /* actions styles */
 .actions {
   position: absolute;
@@ -129,4 +128,14 @@ button:focus-visible {
 .icon {
   transform: scale(0.7);
   color: rgb(65, 65, 65);
+}
+
+/* nav active link class */
+.nav-linkCss a {
+  text-decoration: none;
+}
+
+.active-link {
+  font-weight: bold;
+  color: rgb(39, 31, 31);
 }

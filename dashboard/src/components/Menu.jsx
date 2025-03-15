@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
 
 const Menu = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
@@ -9,31 +9,41 @@ const Menu = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };
 
+  // Common function to handle active class
+  const getNavLinkClass = ({ isActive }) => (isActive ? "active-link" : "text-secondary");
+
   return (
     <div className="d-flex justify-content-between align-items-center ">
       {/* logo */}
-      <div></div>
+      <div className="mx-4 ">
+        <img width={"40px"} src="/images/image.png" alt="" />
+      </div>
 
       {/* right side */}
       <div className="">
         <ul style={{ listStyle: "none" }} className="d-flex gap-5 nav-linkCss">
           <li>
-            <a href="/">Dashboard</a>
+            <NavLink
+              to="/"
+              className={getNavLinkClass}
+            >
+              Dashboard
+            </NavLink>
           </li>
           <li>
-            <a href="/orders">Orders</a>
+            <NavLink to="/orders" className={getNavLinkClass}>Orders</NavLink>
           </li>
           <li>
-            <a href="/holdings">Holdings</a>
+            <NavLink to="/holdings" className={getNavLinkClass}>Holdings</NavLink>
           </li>
           <li>
-            <a href="/positions">Positions</a>
+            <NavLink to="/positions" className={getNavLinkClass}>Positions</NavLink>
           </li>
           <li>
-            <a href="/funds">Funds</a>
+            <NavLink to="/funds" className={getNavLinkClass}>Funds</NavLink>
           </li>
           <li>
-            <a href="/apps">Apps</a>
+            <NavLink to="/apps" className={getNavLinkClass}>Apps</NavLink>
           </li>
           <li>
             <div
