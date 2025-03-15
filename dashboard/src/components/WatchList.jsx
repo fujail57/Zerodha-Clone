@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { watchlist } from "../data/data";
 import { Tooltip, Grow } from "@mui/material";
-import { BarChartOutlined, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Spa } from "@mui/icons-material";
+import {
+  BarChartOutlined,
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+  MoreHoriz,
+  Spa,
+} from "@mui/icons-material";
+import GeneralContext from "./GeneralContext";
 
+// Main Function
 const WatchList = () => {
   return (
     <div>
@@ -72,40 +80,31 @@ const WatchListItem = ({ stock, index }) => {
 //  watch list action function
 
 const WatchListActions = ({ uid }) => {
+  const genrealContext = useContext(GeneralContext);
+
+  const handleBuyClick = () => {
+    genrealContext.openBuyWindow(uid);
+  };
+
   return (
     <span className="">
       <span>
-        <Tooltip
-          title="Buy (B)"
-          placement="top"
-          arrow
-        >
-          <button className="buy">Buy</button>
-        </Tooltip>
-        <Tooltip
-          title="Sell (S)"
-          placement="top"
-          arrow
-        >
-          <button className="sell">Sell</button>
-        </Tooltip>
-        <Tooltip
-          title="Analytics (A)"
-          placement="top"
-          arrow
-          
-        >
-          <button className="action">
-            <BarChartOutlined className="icon"/>
+        <Tooltip title="Buy (B)" placement="top" arrow>
+          <button onClick={handleBuyClick} className="buy">
+            Buy
           </button>
         </Tooltip>
-        <Tooltip
-          title="More"
-          placement="top"
-          arrow
-        >
+        <Tooltip title="Sell (S)" placement="top" arrow>
+          <button className="sell">Sell</button>
+        </Tooltip>
+        <Tooltip title="Analytics (A)" placement="top" arrow>
           <button className="action">
-            <MoreHoriz className="icon"/>
+            <BarChartOutlined className="icon" />
+          </button>
+        </Tooltip>
+        <Tooltip title="More" placement="top" arrow>
+          <button className="action">
+            <MoreHoriz className="icon" />
           </button>
         </Tooltip>
       </span>

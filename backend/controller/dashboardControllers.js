@@ -1,12 +1,11 @@
 // local modules
 const holdingsModel = require("../model/holdingsModel");
 const positionsModel = require("../model/positionsModel");
+const ordersModel = require("../model/ordersModel");
 
-
-exports.handleGetHomePage = async(req,res)=>{
-    res.send("This is home page")
-}
-
+exports.handleGetHomePage = async (req, res) => {
+  res.send("This is home page");
+};
 
 exports.handleGetAllHoldings = async (req, res) => {
   let allHoldings = await holdingsModel.find({});
@@ -18,8 +17,17 @@ exports.handleGetAllPositions = async (req, res) => {
   res.json(allpositions);
 };
 
-
-
+exports.handlePostNewOrder = async (req, res) => {
+  const body = req.body;
+  let newOrder = new ordersModel({
+    name: body.name,
+    qty: body.qty,
+    price: body.price,
+    mode: body.mode,
+  });
+  newOrder.save();
+  res.send("Order saved!");
+};
 
 // add holdings
 
@@ -135,7 +143,7 @@ exports.handleGetAllPositions = async (req, res) => {
 //         day: "+0.32%",
 //       },
 //     ];
-  
+
 //     //   tempHoldings.forEach((item) => {
 //     //     let newHolding = new holdingsModel({
 //     //       name: item.name,
@@ -145,10 +153,10 @@ exports.handleGetAllPositions = async (req, res) => {
 //     //       net: item.net,
 //     //       day: item.day,
 //     //     });
-  
+
 //     //     newHolding.save();
 //     //   });
-  
+
 //     for (const item of tempHoldings) {
 //       let newHolding = new holdingsModel({
 //         name: item.name,
@@ -160,7 +168,6 @@ exports.handleGetAllPositions = async (req, res) => {
 //       });
 //       await newHolding.save();
 //     }
-  
+
 //     res.send("done!!!!");
 //   };
-  

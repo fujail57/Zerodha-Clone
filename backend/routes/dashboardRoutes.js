@@ -8,5 +8,6 @@ router.get("/", dashboardControllers.handleGetHomePage)
 router.get("/allHoldings", dashboardControllers.handleGetAllHoldings);
 router.get("/allpositions", dashboardControllers.handleGetAllPositions);
 // router.get("/addHoldings", dashboardControllers.handleAddHoldings);
+router.post("/newOrder", dashboardControllers.handlePostNewOrder)
 
 module.exports = { router };

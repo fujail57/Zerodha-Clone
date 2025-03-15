@@ -8,6 +8,7 @@ import Holdings from "./Holdings";
 import Position from "./Position";
 import Apps from "./Apps";
 import PageNotFound from "./PageNotFound";
+import GeneralContextProvider from "./GeneralContext";
 
 // routes
 const routers = createBrowserRouter([
@@ -45,7 +46,9 @@ const Dashboard = () => {
   return (
     <div style={{ height: "100vh" }} className="container-fluid row text-muted">
       <section className="col-4 bg-body-secondary">
-        <WatchList />
+        <GeneralContextProvider>
+          <WatchList />
+        </GeneralContextProvider>
       </section>
       {/* right sides routes */}
       <section className="col-8 bg-light">
