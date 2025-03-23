@@ -139,3 +139,14 @@ button:focus-visible {
   font-weight: bold;
   color: rgb(39, 31, 31);
 }
+
+
+/* buy action window */
+.buyActionWindow {
+  position: fixed;
+  bottom: 250px;
+  right: 400px;
+  z-index: 3;
+  background-color: whitesmoke;
+  box-shadow: 3px 5px rgb(229, 229, 229);
+}

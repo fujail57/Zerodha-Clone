@@ -2,13 +2,15 @@ import { Box, TextField } from "@mui/material";
 import React from "react";
 import PrimaryButton from "./utilComp/PrimaryButton";
 import SecondaryButton from "./utilComp/SecondaryButton";
+import { useGeneralContext } from "./GeneralContext";
 
 // Main function
 const BuyActionWindow = () => {
+  // useGeneralContext
+  const { isBuyWindowOpen, handleCloseBuyWindow } = useGeneralContext();
   return (
     <div>
-      <h2>Randor it in Apps.jsx for testing</h2>
-      <section className="card w-50 ">
+      <section className="card p-3">
         <div className="mt-5">
           <Box className="d-flex gap-4">
             <TextField id="qty" label="Qty." variant="outlined" />
@@ -28,7 +30,10 @@ const BuyActionWindow = () => {
         <div className="d-flex gap-3 my-5">
           <span>Margin required ₹140.65</span>
           <PrimaryButton btnName="Buy" />
-          <SecondaryButton btnName="Cancel" />
+          <SecondaryButton
+            onClick={() => handleCloseBuyWindow()}
+            btnName="Cancel"
+          />
         </div>
       </section>
     </div>
@@ -36,5 +41,3 @@ const BuyActionWindow = () => {
 };
 
 export default BuyActionWindow;
-
-// Components

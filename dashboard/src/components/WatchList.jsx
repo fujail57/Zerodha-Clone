@@ -8,7 +8,7 @@ import {
   MoreHoriz,
   Spa,
 } from "@mui/icons-material";
-import GeneralContext from "./GeneralContext";
+import { useGeneralContext } from "./GeneralContext";
 
 // Main Function
 const WatchList = () => {
@@ -80,17 +80,14 @@ const WatchListItem = ({ stock, index }) => {
 //  watch list action function
 
 const WatchListActions = ({ uid }) => {
-  const genrealContext = useContext(GeneralContext);
-
-  const handleBuyClick = () => {
-    genrealContext.openBuyWindow(uid);
-  };
-
+  // context
+  const { isBuyWindowOpen, handleOpenBuyWindow } = useGeneralContext();
+  // return
   return (
     <span className="">
       <span>
         <Tooltip title="Buy (B)" placement="top" arrow>
-          <button onClick={handleBuyClick} className="buy">
+          <button onClick={() => handleOpenBuyWindow(uid)} className="buy">
             Buy
           </button>
         </Tooltip>

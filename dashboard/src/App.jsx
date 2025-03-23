@@ -2,8 +2,6 @@ import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import routers from "./UserRoutes";
 
-// Routes is Defined in Dashboard component
-
 function App() {
   return (
     <div>
