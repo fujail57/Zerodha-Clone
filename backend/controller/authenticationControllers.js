@@ -1,6 +1,6 @@
 // Local module
 const userDB = require("../model/usersModel");
-const { jwtAuthMiddleware, generateToken } = require("../authentication/jwt");
+const { generateToken } = require("../authentication/jwt");
 const { request } = require("express");
 
 exports.handleGetSignup = async (req, res, next) => {
@@ -9,34 +9,31 @@ exports.handleGetSignup = async (req, res, next) => {
 
 //  register user -> signup
 exports.handlePostSignup = async (req, res, next) => {
-  const body = req.body;
-  console.log(body);
-  if (!body || !body.name || !body.email || !body.username || !body.password) {
-    return res.status(400).json({ msg: "All fields are required" });
+  const { name, email, username, password } = req.body;
+  try {
+    if (!name || !email || !username || !password) {
+      return res.status(400).json({ msg: "All fields are required" });
+    }
+    const result = await userDB.create({
+      name,
+      email,
+      username,
+      password,
+    });
+    console.log("Result:: ", result);
+    return res.status(201).json({ msg: "Signup successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server Error" });
   }
-  const signupUser = await userDB.create({
-    name: body.name,
-    email: body.email,
-    username: body.username,
-    password: body.password,
-  });
-  // payload
-  const payload = {
-    id: signupUser.id,
-    username: signupUser.username,
-  };
-  // generate token
-  const token = generateToken(payload);
-  console.log("Result ", signupUser);
-  return res.status(201).json({ msg: "Signup successfully", token: token });
 };
 
-// login
+// login page
 exports.handleGetLogin = async (req, res, next) => {
   res.send("This is Login page");
 };
 
-// post user login
+// post user login ::::::::
 exports.handlePostLogin = async (req, res, next) => {
   try {
     // extract username & password
@@ -53,8 +50,8 @@ exports.handlePostLogin = async (req, res, next) => {
     };
     // genrete token
     const token = generateToken(payload);
-    //cookie
-    res.cookie("jwttoken", token, {
+    //store cookie
+    res.cookie("token", token, {
       httpOnly: true,
     });
     return res.status(200).json({ msg: "LogedIn successfully ", token: token });
@@ -64,6 +61,7 @@ exports.handlePostLogin = async (req, res, next) => {
   }
 };
 
+// for dev only
 exports.handleGetAllUsers = async (req, res, next) => {
   res.send("All users");
 };

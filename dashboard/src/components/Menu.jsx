@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Menu = () => {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
@@ -10,7 +10,8 @@ const Menu = () => {
   };
 
   // Common function to handle active class
-  const getNavLinkClass = ({ isActive }) => (isActive ? "active-link" : "text-secondary");
+  const getNavLinkClass = ({ isActive }) =>
+    isActive ? "active-link" : "text-secondary";
 
   return (
     <div className="d-flex justify-content-between align-items-center ">
@@ -23,27 +24,34 @@ const Menu = () => {
       <div className="">
         <ul style={{ listStyle: "none" }} className="d-flex gap-5 nav-linkCss">
           <li>
-            <NavLink
-              to="/"
-              className={getNavLinkClass}
-            >
+            <NavLink to="/" className={getNavLinkClass}>
               Dashboard
             </NavLink>
           </li>
           <li>
-            <NavLink to="/orders" className={getNavLinkClass}>Orders</NavLink>
+            <NavLink to="/orders" className={getNavLinkClass}>
+              Orders
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/holdings" className={getNavLinkClass}>Holdings</NavLink>
+            <NavLink to="/holdings" className={getNavLinkClass}>
+              Holdings
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/positions" className={getNavLinkClass}>Positions</NavLink>
+            <NavLink to="/positions" className={getNavLinkClass}>
+              Positions
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/funds" className={getNavLinkClass}>Funds</NavLink>
+            <NavLink to="/funds" className={getNavLinkClass}>
+              Funds
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/apps" className={getNavLinkClass}>Apps</NavLink>
+            <NavLink to="/apps" className={getNavLinkClass}>
+              Apps
+            </NavLink>
           </li>
           <li>
             <div

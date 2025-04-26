@@ -1,33 +1,39 @@
 // External Module
 const express = require("express");
 require("dotenv").config();
-
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
 const mongoose = require("mongoose");
 
 // local modules
 const { router } = require("./routes/dashboardRoutes");
 const authRouter = require("./routes/authenticationRoutes");
-const passport = require("./authentication/auth");
-const localAuthMiddleware = require("./authentication/localAuthMiddleware");
-const { generateToken, jwtAuthMiddleware } = require("./authentication/jwt");
+
+const { isAuthenticated } = require("./authentication/jwt");
 
 // configurations
 const PORT = process.env.PORT || 3002;
 const mongoURI = process.env.MONGO_URI;
-// const JWT_SECRET = process.env.JWT_SECRET
 
 const app = express();
 
-//
-app.use(cors());
+// Middlewear
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3002",
+      "http://localhost:5173",
+      "http://localhost:5174",
+    ],
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
+app.use(cookieParser());
 
-// Middleweare
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 //connection
 mongoose
@@ -35,13 +41,9 @@ mongoose
   .then(() => console.log("Mongoose connected"))
   .catch((err) => console.log("Mongoose error ", err));
 
-// authentication
-app.use(passport.initialize());
-// const localAuthMiddleware = passport.authenticate("local", { session: false });
-
-// routes
-app.use("/dashboard", jwtAuthMiddleware, router);
+// Api
 app.use("/auth", authRouter);
+app.use("/dashboard", isAuthenticated, router);
 // page not found
 app.use((req, res) => {
   res.send("Page Not Found");

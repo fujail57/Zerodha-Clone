@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from "react";
 // import { holdings } from "../data/data";
 import axios from "axios";
-
-const holdings_URL = "http://localhost:3002/allholdings";
+import { dashboard_URL } from "./utilComp/dashboard_URL";
 
 const Holdings = () => {
   // fetch holdings data from backend api
   const [allHoldings, setAllHoldings] = useState([]);
 
-  // const fetchHoldingsData = async () => {
-  //   const responce = await axios.get(holdings_URL);
-  //   setAllHoldings(res.data);
-  // };
-
-  // useEffect(() => {
-  //   fetchHoldingsData();
-  // }, []);
-
   useEffect(() => {
-    axios.get(holdings_URL).then((res) => {
-      console.log(res.data);
-      setAllHoldings(res.data);
-    });
+    axios
+      .get(`${dashboard_URL}/allholdings`)
+      .then((res) => {
+        console.log(res.data);
+        setAllHoldings(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching holdings:", err);
+      });
   }, []);
 
   return (

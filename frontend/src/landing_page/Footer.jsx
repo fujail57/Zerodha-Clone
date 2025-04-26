@@ -125,7 +125,10 @@ const Footer = () => {
               services, please create a ticket here.
             </p>
           </div>
-          <div style={{textAnchor:"grey"}} className="d-flex justify-content-around px-5">
+          <div
+            style={{ textAnchor: "grey" }}
+            className="d-flex justify-content-around px-5"
+          >
             <a href="#">NSE</a>
             <a href="#">BSE</a>
             <a href="#">MCX</a>
