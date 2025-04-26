@@ -1,8 +1,8 @@
 
 import { Box, TextField } from "@mui/material";
 import React, { useState } from "react";
-import PrimaryButton from "./utilComp/PrimaryButton";
-import SecondaryButton from "./utilComp/SecondaryButton";
+import PrimaryButton from "./utils/PrimaryButton";
+import SecondaryButton from "./utils/SecondaryButton";
 import { useGeneralContext } from "./GeneralContext";
 // import axios, { Axios } from "axios";
 

@@ -1,1 +1,0 @@
-export const dashboard_URL="http://localhost:3002/dashboard"

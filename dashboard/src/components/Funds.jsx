@@ -1,5 +1,5 @@
 import React from "react";
-import PrimaryButton from "./utilComp/PrimaryButton";
+import PrimaryButton from "./utils/PrimaryButton";
 
 const Funds = () => {
   return (
