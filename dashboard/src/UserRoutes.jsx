@@ -9,6 +9,7 @@ import Position from "./components/Position";
 import Apps from "./components/Apps";
 import PageNotFound from "./components/PageNotFound";
 import Home from "./components/Home";
+import ProtectedRoute from "./components/utils/ProtectedRoute";
 
 // routes
 
@@ -17,12 +18,54 @@ const routers = createBrowserRouter([
     path: "/",
     element: <Home />,
     children: [
-      { index: true, element: <Summary /> },
-      { path: "/orders", element: <Orders /> },
-      { path: "/holdings", element: <Holdings /> },
-      { path: "/positions", element: <Position /> },
-      { path: "/funds", element: <Funds /> },
-      { path: "/apps", element: <Apps /> },
+      {
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <Summary />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/orders",
+        element: (
+          <ProtectedRoute>
+            <Orders />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/holdings",
+        element: (
+          <ProtectedRoute>
+            <Holdings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/positions",
+        element: (
+          <ProtectedRoute>
+            <Position />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/funds",
+        element: (
+          <ProtectedRoute>
+            <Funds />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/apps",
+        element: (
+          <ProtectedRoute>
+            <Apps />
+          </ProtectedRoute>
+        ),
+      },
       { path: "*", element: <PageNotFound /> }, // Handle Page not found
     ],
   },

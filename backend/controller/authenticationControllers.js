@@ -53,6 +53,7 @@ exports.handlePostLogin = async (req, res, next) => {
     //store cookie
     res.cookie("token", token, {
       httpOnly: true,
+      maxAge: 60 * 60 * 1000, // 1 hour
     });
     return res.status(200).json({ msg: "LogedIn successfully ", token: token });
   } catch (error) {
