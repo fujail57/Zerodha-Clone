@@ -69,7 +69,7 @@ The application should now be running on `http://localhost:5174` (or another por
 
 ---
 
-📬 Contact
+### 📬 Contact
 Feel free to reach out or connect:
 
 LinkedIn: fujail57
