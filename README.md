@@ -1,18 +1,31 @@
 # Zerodha Clone – Full-Stack Trading Platform (MERN Stack)
 
-Developed a full-featured Zerodha clone web application using the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform allows users to securely sign up or log in, view their trading dashboard, manage orders, monitor summaries, and track positions in real time. Authentication and authorization are implemented using JSON Web Tokens (JWT) and bcrypt for secure password hashing. The user interface, designed with React.js and Bootstrap, ensures a clean and responsive experience. Core functionalities include placing buy/sell orders, viewing active positions, and analyzing order summaries. The backend is built following the MVC architecture, with MongoDB handling data persistence and Express.js managing API routes and logic.
-### Key Features:
-- Secure user authentication (JWT + bcrypt)
+Developed a full-featured Zerodha clone web application using the MERN stack (MongoDB, Express.js, React.js, Node.js). This platform enables users to securely sign up or log in, access a trading dashboard, manage orders, monitor account summaries, and track market positions in real time.
 
-- User dashboard with trading summary, positions, and order management
+Authentication and authorization are implemented using JSON Web Tokens (JWT) and bcrypt for secure credential handling. The frontend is built with React.js and styled using Bootstrap, ensuring a clean, responsive, and user-friendly experience. The backend follows the MVC architecture, using Express.js to handle API logic and MongoDB for scalable data storage.
 
-- Functional buy and sell order system
+## 🔧 Tech Stack
 
-- Responsive and modular React.js frontend with Bootstrap styling
+- **Frontend**: React.js, Bootstrap
+- **Backend**: Node.js, Express.js (MVC Architecture)
+- **Database**: MongoDB
+- **Authentication**: JSON Web Token (JWT), bcrypt
 
-- RESTful API backend with Node.js and Express.js
+---
 
-- MongoDB for scalable and flexible data storage
+## ✨ Features
+
+- 🔐 Secure user authentication and authorization (JWT + bcrypt)
+- 📊 Interactive user dashboard with:
+  - Trading summary
+  - Active positions
+  - Order history
+- 💹 Functional **Buy** and **Sell** order system
+- 🎨 Responsive and modular UI with React.js and Bootstrap
+- 🌐 RESTful API backend using Node.js and Express
+- 🗃️ MongoDB for scalable and flexible data storage
+
+---
 
 ## Project Setup
 
