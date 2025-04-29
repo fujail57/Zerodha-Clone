@@ -61,7 +61,15 @@ c. Backend
 ```bash
 cd backend
 npm install
+# Add your .env file with MongoURI and JWT secret
 npm start
 ```
 
 The application should now be running on `http://localhost:5174` (or another port if 5174 is in use) and after logedIn, redirect to `http://localhost:5173` (dashboard).
+
+---
+
+📬 Contact
+Feel free to reach out or connect:
+
+LinkedIn: fujail57
