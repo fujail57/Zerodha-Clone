@@ -26,7 +26,7 @@ const LoginForm = () => {
       }, 3000);
     } catch (error) {
       console.log("Error: ", error);
-      alert("Failed to submit");
+      alert("Login failed");
     }
   };
 

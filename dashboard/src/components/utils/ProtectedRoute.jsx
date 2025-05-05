@@ -1,82 +1,41 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "./axiosInstance";
+import { useCookies } from "react-cookie";
+import LoadingLayout from "./LoadingLayout";
 
 const ProtectedRoute = ({ children }) => {
-  //   const navigate = useNavigate();
   const [checkingAuth, setCheckingAuth] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [cookies, removeCookie] = useCookies(["token"]);
 
   useEffect(() => {
-    axiosInstance
-      .get("/")
-      .then((res) => {
+    const verify = async () => {
+      // if (!cookies.token) {
+      //   // setCheckingAuth(false); // ✅ fix: prevent infinite loading
+      //   // window.location.href = "http://localhost:5173/signup";
+      //   // console.log(cookies.token)
+      //   return;
+      // }
+      try {
+        await axiosInstance.get("/");
+        setIsAuthenticated(true);
         setCheckingAuth(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setCheckingAuth(true);
-        // navigate("/login"); // redirect to login if not authenticated
-        window.location.href = "http://localhost:5174/";
-      });
-  }, []);
+      } catch (err) {
+        console.log("Token verification failed ", err);
+        removeCookie("token");
+        window.location.href = "http://localhost:5174/signup";
+      } finally {
+        setCheckingAuth(false);
+      }
+    };
 
-  if (checkingAuth) {
-    return <div className="text-success">Loading...</div>; // or spinner
-  }
+    verify();
+  }, [cookies.token, removeCookie]);
 
-  return children;
+  if (checkingAuth) return <LoadingLayout />; // or spinner
+  return isAuthenticated ? children : null;
+
+  // return checkingAuth ? <div>Loading...</div> : isAuthenticated ? children : null;
 };
 
 export default ProtectedRoute;
-
-// import { useEffect, useState } from "react";
-// import { useCookies } from "react-cookie";
-// import axios from "axios";
-// import { axiosInstance } from "./axiosInstance";
-
-// const ProtectedRoute = ({ children }) => {
-//   const [cookies, removeCookie] = useCookies(["token"]);
-//   const [checkingAuth, setCheckingAuth] = useState(true);
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-//   useEffect(() => {
-//     const verify = async () => {
-//       // If no token, redirect immediately
-//       if (!cookies.token) {
-//         window.location.href = "http://localhost:5174/";
-//         return;
-//       }
-
-//       try {
-//         const { data } = await axios.get(
-//           "http://localhost:3002/auth", // your backend verify route
-//           {},
-//           { withCredentials: true }
-//         );
-
-//         if (data.status) {
-//           setIsAuthenticated(true);
-//         } else {
-//           removeCookie("token");
-//           window.location.href = "http://localhost:5174/";
-//           return;
-//         }
-//       } catch (err) {
-//         console.error("Token verification failed:", err);
-//         removeCookie("token");
-//         window.location.href = "http://localhost:5174/";
-//         return;
-//       } finally {
-//         setCheckingAuth(false);
-//       }
-//     };
-
-//     verify();
-//   }, [cookies, removeCookie]);
-
-//   if (checkingAuth) return <div>Loading...</div>;
-
-//   return isAuthenticated ? children : null;
-// };
-
-// export default ProtectedRoute;
