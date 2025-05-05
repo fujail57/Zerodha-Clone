@@ -8,12 +8,13 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     axiosInstance
-      .get("/auth")
+      .get("/")
       .then((res) => {
         setCheckingAuth(false);
       })
       .catch((err) => {
         console.error(err);
+        setCheckingAuth(true);
         // navigate("/login"); // redirect to login if not authenticated
         window.location.href = "http://localhost:5174/";
       });
@@ -28,41 +29,54 @@ const ProtectedRoute = ({ children }) => {
 
 export default ProtectedRoute;
 
-// :::::::::::
-
-// dashboard/src/components/ProtectedRoute.jsx
-
-// import { Navigate } from "react-router-dom";
 // import { useEffect, useState } from "react";
+// import { useCookies } from "react-cookie";
 // import axios from "axios";
 // import { axiosInstance } from "./axiosInstance";
 
 // const ProtectedRoute = ({ children }) => {
-//   const [isAuthenticated, setIsAuthenticated] = useState(null); // initially unknown
+//   const [cookies, removeCookie] = useCookies(["token"]);
+//   const [checkingAuth, setCheckingAuth] = useState(true);
+//   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
 //   useEffect(() => {
-//     axiosInstance
-//       .get("/auth")
-//       .then((res) => {
-//         if (res.data.authenticated) {
+//     const verify = async () => {
+//       // If no token, redirect immediately
+//       if (!cookies.token) {
+//         window.location.href = "http://localhost:5174/";
+//         return;
+//       }
+
+//       try {
+//         const { data } = await axios.get(
+//           "http://localhost:3002/auth", // your backend verify route
+//           {},
+//           { withCredentials: true }
+//         );
+
+//         if (data.status) {
 //           setIsAuthenticated(true);
 //         } else {
-//           setIsAuthenticated(false);
+//           removeCookie("token");
+//           window.location.href = "http://localhost:5174/";
+//           return;
 //         }
-//       })
-//       .catch((err) => {
-//         setIsAuthenticated(false);
-//       });
-//   }, []);
+//       } catch (err) {
+//         console.error("Token verification failed:", err);
+//         removeCookie("token");
+//         window.location.href = "http://localhost:5174/";
+//         return;
+//       } finally {
+//         setCheckingAuth(false);
+//       }
+//     };
 
-//   if (isAuthenticated === null) {
-//     return <div>Loading...</div>; // or a nice spinner
-//   }
+//     verify();
+//   }, [cookies, removeCookie]);
 
-//   return isAuthenticated
-//     ? children
-//     : (window.location.href = "http://localhost:5174/");
-//   // return isAuthenticated ? children : <Navigate to="/" replace />;
+//   if (checkingAuth) return <div>Loading...</div>;
+
+//   return isAuthenticated ? children : null;
 // };
 
 // export default ProtectedRoute;

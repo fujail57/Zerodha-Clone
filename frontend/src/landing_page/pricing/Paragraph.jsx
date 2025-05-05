@@ -1,3 +1,58 @@
+import { useState } from "react";
+import Brokerage from "./Brokerage";
+import Hero from "./Hero";
+
+// Different Components
+const Home = () => (
+  <div className="p-4 bg-blue-100 rounded">🏠 Welcome to the Home Page!</div>
+);
+const About = () => (
+  <div className="p-4 bg-green-100 rounded">ℹ️ This is the About Page.</div>
+);
+const Contact = () => (
+  <div className="p-4 bg-yellow-100 rounded">
+    📞 Get in touch with us on the Contact Page.
+  </div>
+);
+
+export default function ComponentSwitcher() {
+  const [SelectedComponent, setSelectedComponent] = useState(() => Home);
+
+  const components = {
+    home: Home,
+    about: About,
+    contact: Contact,
+    brokerage: Hero,
+  };
+
+  return (
+    <div className="flex flex-col items-center gap-4 p-4">
+      <div className="flex gap-2">
+        <button onClick={() => setSelectedComponent(() => components.home)}>
+          Show Home
+        </button>
+        <button onClick={() => setSelectedComponent(() => components.about)}>
+          Show About
+        </button>
+        <button onClick={() => setSelectedComponent(() => components.contact)}>
+          Show Contact
+        </button>
+        <button
+          onClick={() => setSelectedComponent(() => components.brokerage)}
+        >
+          Brokerage
+        </button>
+      </div>
+
+      {/* Render the selected component */}
+      {/* {SelectedComponent ? <SelectedComponent /> : null} */}
+      {SelectedComponent && <SelectedComponent />}
+    </div>
+  );
+}
+
+//  ::::::::: Only for docs ::::::::::::::: 
+
 // import { useState } from "react";
 
 // export default function ParagraphSwitcher() {
@@ -127,55 +182,3 @@
 // }
 
 // /////////////
-
-import { useState } from "react";
-import Brokerage from "./Brokerage";
-import Hero from "./Hero";
-
-// Different Components
-const Home = () => (
-  <div className="p-4 bg-blue-100 rounded">🏠 Welcome to the Home Page!</div>
-);
-const About = () => (
-  <div className="p-4 bg-green-100 rounded">ℹ️ This is the About Page.</div>
-);
-const Contact = () => (
-  <div className="p-4 bg-yellow-100 rounded">
-    📞 Get in touch with us on the Contact Page.
-  </div>
-);
-
-export default function ComponentSwitcher() {
-  const [SelectedComponent, setSelectedComponent] = useState(()=> Home);
-
-  const components = {
-    home: Home,
-    about: About,
-    contact: Contact,
-    brokerage: Hero
-  };
-
-  return (
-    <div className="flex flex-col items-center gap-4 p-4">
-      <div className="flex gap-2">
-        <button onClick={() => setSelectedComponent(() => components.home)}>
-          Show Home
-        </button>
-        <button onClick={() => setSelectedComponent(() => components.about)}>
-          Show About
-        </button>
-        <button onClick={() => setSelectedComponent(() => components.contact)}>
-          Show Contact
-        </button>
-        <button onClick={()=>setSelectedComponent(()=> components.brokerage)}>Brokerage</button>
-      </div>
-
-      {/* Render the selected component */}
-      {/* {SelectedComponent ? <SelectedComponent /> : null} */}
-      {SelectedComponent && <SelectedComponent />}
-    </div>
-  );
-}
-
-
-

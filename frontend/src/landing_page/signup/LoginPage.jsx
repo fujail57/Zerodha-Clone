@@ -1,19 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+// import "./signup.css";
 
-const LoginFunctionality = () => {
-  return (
-    <div className="text-muted border p-5 bg-light ">
-      <h1>Login now</h1>
-      <LoginForm />
-    </div>
-  );
-};
-
-export default LoginFunctionality;
-
-// SignupForm component
 const LoginForm = () => {
   const {
     register,
@@ -32,51 +21,57 @@ const LoginForm = () => {
       console.log("Login successfully: ", data);
       alert("Login successfully");
       reset(); // clear form after submition
-      window.location.href = "http://localhost:5173/"; // redirect here
+      setTimeout(() => {
+        window.location.href = "http://localhost:5173/"; // redirect here (dashboard)
+      }, 3000);
     } catch (error) {
       console.log("Error: ", error);
       alert("Failed to submit");
     }
   };
 
-  //  return
+  //  return statement
   return (
     <form onSubmit={handleSubmit(LoginFormSubmit)}>
-      <div className="w-50 border d-grid row-gap-3">
-        <div className="col">
-          <label className="mx-2">Username: </label>
+      <div className="text-muted">
+        <section>
+          <h1>Login now</h1>
+          <h6 className="text-muted my-3">
+            Or track your existing application
+          </h6>
+        </section>
+        <div className="">
           <input
             placeholder="Enter username"
             {...register("username", { required: true })}
             aria-invalid={errors.username ? "true" : "false"}
+            className={errors.username ? "input-error" : "input-normal"}
           />
-          {errors.username?.type === "required" && (
-            <span role="alert">Required</span>
-          )}
         </div>
 
-        <div className="col">
-          <label className="mx-2">Password: </label>
+        <div className="">
           <input
             type="password"
             placeholder="Enter password"
             {...register("password", { required: true })}
             aria-invalid={errors.password ? "true" : "false"}
+            className={errors.password ? "input-error" : "input-normal"}
           />
-          {errors.password?.type === "required" && (
-            <span role="alert">Required</span>
-          )}
         </div>
 
-        <br />
+        <div>
+          <input
+            className="btn btn-primary"
+            type="submit"
+            disabled={isSubmitting}
+            value={isSubmitting ? "Login..." : "Login"}
+          />
+        </div>
 
-        <input
-          className="btn btn-primary"
-          type="submit"
-          disabled={isSubmitting}
-          value={isSubmitting ? "Login..." : "Login"}
-        />
+        <p>By proceeding, you agree to the Zerodha terms & privacy policy</p>
       </div>
     </form>
   );
 };
+
+export default LoginForm;

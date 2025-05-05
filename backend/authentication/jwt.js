@@ -8,14 +8,20 @@ const generateToken = (userData) => {
 
 //  function to restric the route to logedIn user only
 const isAuthenticated = async (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token)
+    return res
+      .status(401)
+      .json({ message: "No token provided", status: false });
+  // Validate token
   try {
-    const token = req.cookies.token;
-    if (!token) return res.status(401).json({ msg: "No token provided" });
-    const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded.id;
+    // res.json({ status: true, user: decoded.name });
     next();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    res.status(401).json({ message: "Invalid token", status: false });
   }
 };
 

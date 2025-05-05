@@ -5,6 +5,7 @@ const ordersModel = require("../model/ordersModel");
 
 exports.handleGetHomePage = async (req, res) => {
   res.send("This is home page");
+  // console.log(res)
 };
 
 exports.handleGetAllHoldings = async (req, res) => {

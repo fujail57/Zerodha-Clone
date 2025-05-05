@@ -1,0 +1,18 @@
+input {
+  width: 70%;
+  padding: 7px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.input-error {
+  border: 2px solid red;
+}
+
+.input-normal {
+  border: 1px solid #ccc;
+}
+
+p {
+  font-size: 14px;
+}
