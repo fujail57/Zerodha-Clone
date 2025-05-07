@@ -16,3 +16,9 @@ input {
 p {
   font-size: 14px;
 }
+
+
+.eye-btn {
+  margin-top: 8px;
+  transform: translateX(-40px);
+}

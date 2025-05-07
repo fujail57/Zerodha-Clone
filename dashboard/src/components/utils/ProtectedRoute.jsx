@@ -23,7 +23,7 @@ const ProtectedRoute = ({ children }) => {
       } catch (err) {
         console.log("Token verification failed ", err);
         removeCookie("token");
-        window.location.href = "http://localhost:5174/signup";
+        window.location.href = "http://localhost:5173/signup";
       } finally {
         setCheckingAuth(false);
       }

@@ -64,6 +64,13 @@ exports.handlePostLogin = async (req, res, next) => {
   }
 };
 
+// Handle Logout
+exports.handleLogout = async (req, res) => {
+  res.clearCookie("token");
+  return res.status(200).json({ message: "Logged out successfully" });
+};
+
+
 // for dev only
 exports.handleGetAllUsers = async (req, res, next) => {
   res.send("All users");

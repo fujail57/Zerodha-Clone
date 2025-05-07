@@ -2,8 +2,14 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import "./signup.css";
+import { HiEye, HiEyeOff } from "react-icons/hi";
+import { useState } from "react";
 
 const SignupForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const {
     register,
     handleSubmit,
@@ -18,12 +24,12 @@ const SignupForm = () => {
       await axios.post("http://localhost:3002/auth/signup", data, {
         withCredentials: true,
       });
-      console.log("Signup successfully: ", data);
-      alert("Submitted successfully");
+      // console.log("Signup successfully: ", data);
+      alert("Signup successfully");
       reset(); // clear form after submition
     } catch (error) {
       console.log("Error: ", error);
-      alert("Failed to submit");
+      alert("Failed to Signup");
     }
   };
 
@@ -67,12 +73,20 @@ const SignupForm = () => {
 
         <div className="">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Create password"
             {...register("password", { required: true })}
             aria-invalid={errors.password ? "true" : "false"}
             className={errors.password ? "input-error" : "input-normal"}
           />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            disabled={isSubmitting}
+            className="btn position-absolute eye-btn"
+          >
+            {showPassword ? <HiEyeOff /> : <HiEye />}
+          </button>
         </div>
 
         <div>

@@ -1,9 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useState } from "react";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 // import "./signup.css";
 
 const LoginForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   const {
     register,
     handleSubmit,
@@ -22,8 +29,8 @@ const LoginForm = () => {
       alert("Login successfully");
       reset(); // clear form after submition
       setTimeout(() => {
-        window.location.href = "http://localhost:5173/"; // redirect here (dashboard)
-      }, 3000);
+        window.location.href = "http://localhost:5174/"; // redirect here (dashboard)
+      }, 1000);
     } catch (error) {
       console.log("Error: ", error);
       alert("Login failed");
@@ -51,12 +58,20 @@ const LoginForm = () => {
 
         <div className="">
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="Enter password"
             {...register("password", { required: true })}
             aria-invalid={errors.password ? "true" : "false"}
             className={errors.password ? "input-error" : "input-normal"}
           />
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            disabled={isSubmitting}
+            className="btn eye-btn position-absolute"
+          >
+            {showPassword ? <HiEyeOff /> : <HiEye />}
+          </button>
         </div>
 
         <div>

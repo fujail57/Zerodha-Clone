@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { axiosAuthInstance } from "./utils/axiosInstance";
 
 const Menu = () => {
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState("");
 
   // Click handle functions
   const handleProfileClick = (index) => {
@@ -12,6 +13,20 @@ const Menu = () => {
   // Common function to handle active class
   const getNavLinkClass = ({ isActive }) =>
     isActive ? "active-link" : "text-secondary";
+
+  // logout
+  const handleLogoutClick = async () => {
+    try {
+      await axiosAuthInstance.post("/logout");
+      alert("Logged out successfully");
+      setTimeout(() => {
+        window.location.href = "http://localhost:5173/signup";
+      }, 1000);
+    } catch (error) {
+      console.log("Faild to Logout ", error);
+      alert("Logout failed!");
+    }
+  };
 
   return (
     <div className="d-flex justify-content-between align-items-center ">
@@ -54,13 +69,28 @@ const Menu = () => {
             </NavLink>
           </li>
           <li>
-            <div
-              style={{ cursor: "pointer" }}
-              className="d-flex gap-2"
-              onClick={handleProfileClick}
-            >
-              <div className="">ZU</div>
-              <p className="">USERID</p>
+            <div className="dropdown">
+              <button
+                className="btn dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span className="zu-style">ZU</span> <span>USERID</span>
+              </button>
+              <ul className="dropdown-menu dropdown-menu-dark">
+                <li className="dropdown-item cursor-pointor">Action</li>
+                <li className="dropdown-item cursor-pointor">Another Action</li>
+                <li className="dropdown-divider">
+                  <hr />
+                </li>
+                <li
+                  onClick={handleLogoutClick}
+                  className="dropdown-item cursor-pointor"
+                >
+                  Log Out
+                </li>
+              </ul>
             </div>
           </li>
         </ul>
