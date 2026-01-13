@@ -24,20 +24,22 @@ Authentication and authorization are implemented using JSON Web Tokens (JWT) and
 - 🎨 Responsive and modular UI with React.js and Bootstrap
 - 🌐 RESTful API backend using Node.js and Express
 - 🗃️ MongoDB for scalable and flexible data storage
+- 🐳 Dockerized the application using a custom Dockerfile and Docker Compose
+- 🐳 Build and pushed images to Docker Hub for consistent deployment
 
 ---
 
 ## Project Setup
 
 Before starting, make sure you have the following installed:
-- Node.js (version 14 or higher)
+- Node.js (version 20 or higher)
 - npm (comes with Node.js)
 
-To set up the project:
+### To set up the project:
 
 1. Clone this repository
 ```bash
-git clone [repository-url]
+git clone https://github.com/fujail57/Zerodha-Clone.git
 cd [repository-name]
 ```
 
@@ -65,11 +67,52 @@ npm install
 npm start
 ```
 
-The application should now be running on `http://localhost:5174` (or another port if 5174 is in use) and after logedIn, redirect to `http://localhost:5173` (dashboard).
+### To set up the project using Docker:
+
+- **You can find the Docker image here:**
+
+  - [fujail57/zerodha_backend](https://hub.docker.com/repository/docker/fujail57/zerodha_backend/general)
+  - [fujail57/zerodha_frontend](https://hub.docker.com/repository/docker/fujail57/zerodha_frontend/general)
+  - [fujail57/zerodha_dashboard](https://hub.docker.com/repository/docker/fujail57/zerodha_dashboard/general)
+
+1. Check docker is install or not
+```bash
+docker -v
+```
+
+2. Clone this repository
+```bash
+git clone https://github.com/fujail57/Zerodha-Clone.git
+cd [repository-name]
+```
+
+3. Start the server using docker
+```bash
+docker compose up
+```
+
+4. Application should be run on this URL
+
+- Backend:
+```bash
+http://localhost:5173/
+```
+
+- Frontend:
+```bash
+http://localhost:5173/
+
+```
+- Dashboard:
+```bash
+http://localhost:5174/
+```
+
+The application should now be running on `http://localhost:5173` (or another port if 5173 is in use) and after logedIn, redirect to `http://localhost:5174` (dashboard).
 
 ---
 
 ### 📬 Contact
 Feel free to reach out or connect:
 
-LinkedIn: fujail57
+LinkedIn: [fujail57](https://www.linkedin.com/in/fujail57/)
