@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import BuyActionWindow from "./BuyActionWindow";
-import SellActionWindow from "./sellActionWindow";
+import SellActionWindow from "./SellActionWindow";
 
 //  create context
 const GeneralContext = createContext(null);

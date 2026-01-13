@@ -1,0 +1,58 @@
+services:
+  # server
+  backend:
+    image: fujail57/zerodha_backend
+    container_name: backend
+    ports:
+      - "3002:3002"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/zerodha-db
+      JWT_SECRET: 12345
+    networks:
+      - zerodha-net
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  # Frontend
+  frontend:
+    image: fujail57/zerodha_frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - zerodha-net
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # Dashboard
+  dashboard:
+    image: fujail57/zerodha_dashboard
+    container_name: dashboard
+    ports:
+      - "5174:5174"
+    networks:
+      - zerodha-net
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
+  # Mongo Db
+  mongo:
+    image: mongo:6
+    container_name: mongo_db
+    networks:
+      - zerodha-net
+    volumes:
+      - zerodha_db:/data/db
+    restart: unless-stopped
+
+# Network
+networks:
+  zerodha-net:
+    driver: bridge
+
+# Volume
+volumes:
+  zerodha_db:

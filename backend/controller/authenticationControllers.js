@@ -20,7 +20,7 @@ exports.handlePostSignup = async (req, res, next) => {
       username,
       password,
     });
-    console.log("Result:: ", result);
+    // console.log("Result:: ", result);
     return res.status(201).json({ msg: "Signup successfully" });
   } catch (error) {
     console.log(error);
